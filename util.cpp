@@ -15,14 +15,35 @@ std::string convToLower(std::string src)
     to a set of words based on the criteria given in the assignment **/
 std::set<std::string> parseStringToWords(string rawWords)
 {
+  //split at puncutation and return the substrings?
+  //sub strings only count if they are at least 2 characters 
+  //do we need to trim the words??
+  std::set<std::string> keywords;
+  std::string currword;
+	rawWords = convToLower(rawWords);
+  for (char c: rawWords) {//iterate through rawWords
+    //check each char to make sure its a letter and not a 
+    //punctuation or space 
 
-
-
-
-
-
-
-
+    if (!std::ispunct(c) && !std::isspace(c)) { //should i use ispunc()?
+      //if its a valid char, add to the current word
+      currword += c;
+    }
+    else { //its a punct or a white space
+    //add chars to new word
+    //once we hit here, we add the currword to keywords if its valid
+     
+        if (currword.length() >= 2) {
+          keywords.insert(currword);
+        }
+        currword.clear();
+    }
+  }
+  //handle the last word thats still in currword
+  if (currword.length() >= 2) {
+    keywords.insert(currword);
+  }
+  return keywords;
 
 
 }
